@@ -6,7 +6,7 @@ module.exports = {
 		.setDescription('Sends a message to the staff team')
 		.addStringOption(option =>
 			option.setName('message')
-				.setDescription('This commands sends a message to the staff without anyone else seeing it.')
+				.setDescription('Send a message to the staff without anyone else seeing it.')
 				.setRequired(true)),
 	async execute(interaction) {
 
