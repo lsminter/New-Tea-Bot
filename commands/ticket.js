@@ -14,7 +14,7 @@ module.exports = {
 		const channel = interaction.guild.channels.cache.get('748571128687100002');
 		const commandUser = await interaction.guild.members.cache.get(interaction.user.id) ;
 		const commandUserNickname = commandUser.nickname ? commandUser.nickname : commandUser.user.username;
-		await channel.send(`New report from "${commandUserNickname}": ${message}`)
+		await channel.send(`New ticket from "${commandUserNickname}": ${message}`)
 		await interaction.reply({content: 'Your report has been sent to the staff team.', ephemeral: true});
 	},
 };
