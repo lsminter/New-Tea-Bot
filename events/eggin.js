@@ -107,7 +107,7 @@ module.exports = {
                   }
                   const documentUpdate = await col.findOne(filter);
                   const document2Update = await col.findOne(filter2);
-                  await message.reply(`${documentUpdate.username} score: ${documentUpdate.count}. ${document2Update.username} score: ${document2Update.count}.`)
+                  await message.reply(`${egger} score: ${documentUpdate.count}. ${eggee} score: ${document2Update.count}.`)
                 } else {
                   filter = {"username": eggee};
                   const document = await col.findOne(filter);
@@ -178,7 +178,7 @@ module.exports = {
                   }
                   const documentUpdate = await col.findOne(filter);
                   const document2Update = await col.findOne(filter2);
-                  await message.reply(`${documentUpdate.username} score: ${documentUpdate.count}. ${document2Update.username} score: ${document2Update.count}.`)
+                  await message.reply(`${eggee} score: ${documentUpdate.count}. ${egger} score: ${document2Update.count}.`)
                 }
               } catch (err) {
                 console.log(err.stack);
