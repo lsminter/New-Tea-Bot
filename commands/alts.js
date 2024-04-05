@@ -15,7 +15,7 @@ module.exports = {
 				.setRequired(true)),
 	async execute(interaction) {
 		const alt = interaction.options.getString('alt');
-		const commandUser = await interaction.guild.members.cache.get(interaction.user.id) ;
+		const commandUser = await interaction.guild.members.cache.get(interaction.user.id);
 		const commandUserNickname = commandUser.nickname ? commandUser.nickname : commandUser.user.username;
 
     async function run(){
@@ -29,10 +29,6 @@ module.exports = {
         filter = {"username": commandUserNickname};
         const document = await col.findOne(filter);
         console.log(document)
-        // check if the commandUserNickname is a username
-          // add the alt to the array of alts
-        // if the commandUserNickname doesn't match a username
-          // create a new document for them
         if (document){
           await col.updateOne(
             { username: commandUserNickname},
