@@ -14,7 +14,7 @@ module.exports = {
 				.setDescription('Name of your alt.')
 				.setRequired(true)),
 	async execute(interaction) {
-    await interaction.deferReply();
+    // await interaction.deferReply();
 		const alt = await interaction.options.getString('alt');
 		const commandUser = await interaction.guild.members.cache.get(interaction.user.id);
 		const commandUserNickname = commandUser.nickname ? commandUser.nickname : commandUser.user.username;
@@ -38,7 +38,6 @@ module.exports = {
             }
           )
         } else {
-          // Create new documents
           const userDocuments = [
             {
               "username": commandUserNickname,
@@ -46,13 +45,12 @@ module.exports = {
               "alts": [alt]
             }
           ]
-          // Insert the documents into the specified collection
           const p = await col.insertMany(userDocuments);
         }
-        await interaction.editReply(`"${alt}" has been added to "${commandUserNickname}"`)
+        await interaction.reply(`"${alt}" has been added to "${commandUserNickname}"`)
       } catch (err) {
         console.log(err.stack);
-        await interaction.editReply(`Error adding "${alt}" to "${commandUserNickname}"`)
+        await interaction.reply(`Error adding "${alt}" to "${commandUserNickname}"`)
       }
       finally {
         await mongoClient.close();
