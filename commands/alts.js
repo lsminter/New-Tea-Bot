@@ -50,13 +50,13 @@ module.exports = {
           // Insert the documents into the specified collection
           const p = await col.insertMany(userDocuments);
         }
-        await interaction.reply(`"${alt}" has been added to "${commandUserNickname}"`)
+        await interaction.editReply(`"${alt}" has been added to "${commandUserNickname}"`)
         const document2 = await col.findOne(filter);
         console.log(document2.alts)
 
       } catch (err) {
         console.log(err.stack);
-        await interaction.reply(`Error adding "${alt}" to "${commandUserNickname}"`)
+        await interaction.editReply(`Error adding "${alt}" to "${commandUserNickname}"`)
       }
       finally {
         await mongoClient.close();
