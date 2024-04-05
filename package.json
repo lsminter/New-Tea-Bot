@@ -12,7 +12,10 @@
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
-    "nodemon": "^2.0.20"
+    "mongodb": "^6.5.0",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.37.2",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.2.15",
