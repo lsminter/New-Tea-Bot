@@ -14,6 +14,7 @@ module.exports = {
 				.setDescription('Name of your alt.')
 				.setRequired(true)),
 	async execute(interaction) {
+    await interaction.deferReply();
 		const alt = interaction.options.getString('alt');
 		const commandUser = await interaction.guild.members.cache.get(interaction.user.id);
 		const commandUserNickname = commandUser.nickname ? commandUser.nickname : commandUser.user.username;
