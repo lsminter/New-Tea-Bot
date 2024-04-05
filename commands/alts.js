@@ -29,7 +29,6 @@ module.exports = {
         let filter = ''
         filter = {"username": commandUserNickname};
         const document = await col.findOne(filter);
-        console.log(document)
         if (document){
           await col.updateOne(
             { username: commandUserNickname},
@@ -51,9 +50,6 @@ module.exports = {
           const p = await col.insertMany(userDocuments);
         }
         await interaction.editReply(`"${alt}" has been added to "${commandUserNickname}"`)
-        const document2 = await col.findOne(filter);
-        console.log(document2.alts)
-
       } catch (err) {
         console.log(err.stack);
         await interaction.editReply(`Error adding "${alt}" to "${commandUserNickname}"`)

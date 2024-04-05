@@ -85,7 +85,6 @@ module.exports = {
                   } else {
                     filter = {'alts': `${eggee}`};
                     const altDocument = await col.findOne(filter);
-                    console.log(altDocument)
                     if (altDocument) {
                       await col.updateOne(
                         { username: altDocument.username},
@@ -122,7 +121,6 @@ module.exports = {
                   } else {
                     filter = {'alts': `${eggee}`};
                     const altDocument = await col.findOne(filter);
-                    console.log(altDocument)
                     if (altDocument) {
                       await col.updateOne(
                         { username: altDocument.username},
@@ -156,7 +154,6 @@ module.exports = {
                   } else {
                     filter = {'alts': `${egger}`};
                     const altDocument = await col.findOne(filter);
-                    console.log(altDocument)
                     if (altDocument) {
                       await col.updateOne(
                         { username: altDocument.username},
