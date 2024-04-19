@@ -12,25 +12,27 @@ module.exports = {
 	async execute(message) {
     const userIsBot = message.author.bot
   //   tea channel
-  if (message.channelId == '1225503184340910090'){
+  // if (message.channelId == '1225503184340910090'){
   //     tea bot
-    if (message.author.id == '1225503647232954398'){ 
+    // if (message.author.id == '1225503647232954398'){ 
   //     my channel
-    // if (message.channelId == '931644184580993157'){
+    if (message.channelId == '931644184580993157'){
       // my id
-      // if (message.author.id == '245048578945449984'){ 
+      if (message.author.id == '245048578945449984'){ 
         let [egger, eggee] = ''
 
         if (message.content.includes('just handegged')){
           [egger, eggee] = message.content.split(' just handegged ')
+          egger = egger.trim()
+          eggee = eggee.slice(0, -1).trim()
         } 
         else if (message.content.includes('just got handegged by')){
-          [egger, eggee] = message.content.split(' just got handegged by ')
+          [eggee, egger] = message.content.split(' just got handegged by ')
+          egger = egger.slice(0, -1).trim()
+          eggee = eggee.trim()
         } else {
           return
         }
-        egger = egger.trim()
-        eggee = eggee.slice(0, -1).trim()
 
         async function run() {
           try {
@@ -111,18 +113,18 @@ module.exports = {
                   const document2Update = await col.findOne(filter2);
                   await message.reply(`${egger} score: ${documentUpdate.count}. ${eggee} score: ${document2Update.count}.`)
                 } else {
-                  filter = {"username": eggee};
+                  filter = {"username": egger};
                   const document = await col.findOne(filter);
                   if (document){
                     await col.updateOne(
-                      { username: eggee},
+                      { username: egger},
                       {
                         $set: {count: document.count + 1},
                         $currentDate: { lastModified: true }
                       }
                     )
                   } else {
-                    filter = {'alts': `${eggee}`};
+                    filter = {'alts': `${egger}`};
                     const altDocument = await col.findOne(filter);
                     if (altDocument) {
                       await col.updateOne(
@@ -135,19 +137,19 @@ module.exports = {
                     } else {
                       const userDocuments = [
                         {
-                          "username": eggee,
+                          "username": egger,
                           "count": 1,
-                          "alts": [eggee]
+                          "alts": [egger]
                         }
                       ]
                       const p = await col.insertMany(userDocuments);
                     }
                   }
-                  filter2 = {"username": egger}
+                  filter2 = {"username": eggee}
                   const document2 = await col.findOne(filter2);
                   if (document2){
                     await col.updateOne(
-                      { username: egger},
+                      { username: eggee},
                       {
                         $set: {count: document2.count - 1},
                         $currentDate: { lastModified: true }
@@ -155,7 +157,7 @@ module.exports = {
                     )
                     const document2Update = await col.findOne(filter2);
                   } else {
-                    filter = {'alts': `${egger}`};
+                    filter = {'alts': `${eggee}`};
                     const altDocument = await col.findOne(filter);
                     if (altDocument) {
                       await col.updateOne(
@@ -168,9 +170,9 @@ module.exports = {
                     } else {
                       const userDocuments = [
                         {
-                          "username": egger,
+                          "username": eggee,
                           "count": -1,
-                          "alts": [egger]
+                          "alts": [eggee]
                         }
                       ]
                       const p = await col.insertMany(userDocuments);
@@ -178,7 +180,7 @@ module.exports = {
                   }
                   const documentUpdate = await col.findOne(filter);
                   const document2Update = await col.findOne(filter2);
-                  await message.reply(`${eggee} score: ${documentUpdate.count}. ${egger} score: ${document2Update.count}.`)
+                  await message.reply(`${eggee} score: ${document2Update.count}. ${egger} score: ${documentUpdate.count}.`)
                 }
               } catch (err) {
                 console.log(err.stack);
