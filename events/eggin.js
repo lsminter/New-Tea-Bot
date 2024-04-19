@@ -23,8 +23,11 @@ module.exports = {
 
         if (message.content.includes('just handegged')){
           [egger, eggee] = message.content.split(' just handegged ')
-        } else {
+        } 
+        else if (message.content.includes('just got handegged by')){
           [egger, eggee] = message.content.split(' just got handegged by ')
+        } else {
+          return
         }
         egger = egger.trim()
         eggee = eggee.slice(0, -1).trim()
