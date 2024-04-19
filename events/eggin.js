@@ -12,13 +12,13 @@ module.exports = {
 	async execute(message) {
     const userIsBot = message.author.bot
   //   tea channel
-  // if (message.channelId == '1225503184340910090'){
+  if (message.channelId == '1225503184340910090'){
   //     tea bot
-    // if (message.author.id == '1225503647232954398'){ 
+    if (message.author.id == '1225503647232954398'){ 
   //     my channel
-    if (message.channelId == '931644184580993157'){
+    // if (message.channelId == '931644184580993157'){
       // my id
-      if (message.author.id == '245048578945449984'){ 
+      // if (message.author.id == '245048578945449984'){ 
         let [egger, eggee] = ''
 
         if (message.content.includes('just handegged')){
